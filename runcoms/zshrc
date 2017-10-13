@@ -5,9 +5,52 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+
+#
+# locale for system
+#
+echo Setting up locale..
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Source Prezto.
+echo Prezto..
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# postgresql
+export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH"
+
+# aliases
+alias lsa='ls -alh'
+alias bu='brew upgrade && brew update && brew cleanup -s'
+alias history='history -i 1'
+
+# pyenv
+echo pyenv..
+export PATH="/Users/pac/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# rbenv
+echo  rbenv..
+export PATH="/Users/pac/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# autojump
+echo autojump..
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# nvm
+echo nvm..
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# keyboard shortcuts
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
